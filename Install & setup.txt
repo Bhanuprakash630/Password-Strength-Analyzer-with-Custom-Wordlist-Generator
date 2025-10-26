@@ -1,0 +1,55 @@
+Install & setup
+
+Clone the repository:
+
+git clone https://github.com/<your-username>/password-wordlist-tool.git
+cd password-wordlist-tool
+
+
+(Optional) Create & activate a virtualenv:
+
+python -m venv venv
+# On Windows (PowerShell)
+.\venv\Scripts\Activate.ps1
+# On macOS/Linux
+source venv/bin/activate
+
+
+Install optional dependencies (recommended):
+
+pip install -r requirements.txt
+# or individually:
+pip install zxcvbn-python nltk
+python -c "import nltk; nltk.download('punkt')"
+
+
+If you do not install zxcvbn, the tool will still run and show a fallback entropy estimate.
+
+Usage
+CLI examples
+
+Run the main script (example filename wordlist.py)
+
+Analyze a password:
+
+python wordlist.py --password "P@ssw0rd123"
+
+
+Generate a focused wordlist from seeds:
+
+python wordlist.py --inputs "alice,bob,fluffy,1990-03-15" --output mylist.txt
+
+
+Include specific year range:
+
+python wordlist.py --inputs "john,doe" --years 1980 2025 --output johnlist.txt
+
+
+Disable leet or case variants:
+
+python wordlist.py --inputs "nick" --no-leet --no-case --output reduced.txt
+
+
+Limit number of words (to avoid huge files):
+
+python wordlist.py --inputs "alice,bob" --max-words 5000 --output small.txt
